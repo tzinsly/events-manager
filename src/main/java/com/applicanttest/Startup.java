@@ -15,11 +15,10 @@ public class Startup {
         EventDataServiceImpl evntDS = new EventDataServiceImpl();
 
         logger.info("Initializing application Resources");
-        evntDS.cleanResources();
         evntDS.initializeResources();
 
         logger.info("Reading file resource");
-        List<Event> events = evntDS.readEventLogFile("C:\\Users\\TATIANEZINSLY\\Documents\\mine\\opt-conf\\dev\\events-manager\\src\\main\\resources\\events-log");
+        List<Event> events = evntDS.readEventLogFile(args[0]);
 
         logger.info("Registering all the events");
         evntDS.registerEvents(events);

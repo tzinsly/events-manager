@@ -11,27 +11,24 @@ public class EventDAO {
 
     final static Logger logger = Logger.getLogger(EventDAO.class);
 
-    public void createTables() {
+    public void createTables() throws SQLException {
         Connection conn = HsqldbConnection.getConnection();
         Statement stm = null;
-        int result = 0;
+
         String query = "create table event(id varchar(50) not null, duration bigint not null, " +
                 "type varchar(50), host varchar(50), alert boolean, PRIMARY KEY (id) ) ";
 
-        try {
-            stm = conn.createStatement();
-            result = stm.executeUpdate(query);
-        } catch (SQLException e) {
-            logger.error("SQL Exception during create Table, return code: " + result + " message: " + e.getMessage());
-            e.printStackTrace();
-        }
+
+        stm = conn.createStatement();
+        stm.executeUpdate(query);
+
     }
 
     public void registerEvents(EventSummary event) {
         Connection conn = HsqldbConnection.getConnection();
         int result = 0;
 
-        String query = "insert into EVENT(id, duration, type, host, alert) " +
+        String query = "insert into event(id, duration, type, host, alert) " +
                 " values ( ?, ?, ?, ?, ? )";
         try (PreparedStatement stm = conn.prepareStatement(query);) {
 
@@ -53,7 +50,7 @@ public class EventDAO {
         Connection conn = HsqldbConnection.getConnection();
         int result = 0;
 
-        String query = "select * from EVENT";
+        String query = "select * from event";
         try (PreparedStatement stm = conn.prepareStatement(query);
              ResultSet rs = stm.executeQuery()) {
 

@@ -12,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -88,8 +89,13 @@ public class EventDataServiceImpl implements IEventDataService {
     @Override
     public void initializeResources() {
 
-        EventDAO eventDAO = new EventDAO();
-        eventDAO.createTables();
+        try {
+            EventDAO eventDAO = new EventDAO();
+            eventDAO.createTables();
+        } catch (SQLException e ) {
+            logger.warn("SQL Exception during creating table. Trying to cleanup resources... ");
+            cleanResources();
+        }
 
     }
 
