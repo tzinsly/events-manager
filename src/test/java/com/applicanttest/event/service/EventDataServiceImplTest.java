@@ -16,15 +16,28 @@ import static org.junit.Assert.*;
 
 public class EventDataServiceImplTest {
 
+    EventDAO eventDAO = new EventDAO();
+
+    EventDataServiceImpl eventDataService = new EventDataServiceImpl();
+
     @Before
-    public void cleanUpTableBeforeTests() {
-        EventDAO eventDAO = new EventDAO();
+    public void createTableBeforeTests() throws SQLException {
         eventDAO.createTables();
     }
 
+    @After
+    public void cleanUpTableAfterTests() {
+        eventDAO.dropTable();
+    }
+
+    /*@Test
+    public void readEventLogFile(String fileName) {
+
+    }*/
+
     @Test
     public void registerEventsTest() {
-        EventDataServiceImpl eventDataService = new EventDataServiceImpl();
+
         List<Event> events = mockEventList();
 
         eventDataService.registerEvents(events);
@@ -39,11 +52,6 @@ public class EventDataServiceImplTest {
 
     }
 
-    @After
-    public void cleanUpTableAfterTests() {
-        EventDAO eventDAO = new EventDAO();
-        eventDAO.dropTable();
-    }
 
     public List<Event> mockEventList(){
 
@@ -77,6 +85,34 @@ public class EventDataServiceImplTest {
         event4.setState(State.FINISHED);
 
         return Arrays.asList(event1, event2, event3, event4);
+
+    }
+
+    public List<EventSummary> mockEventSummaryList(){
+
+        EventSummary event1 = new EventSummary();
+        EventSummary event2 = new EventSummary();
+        EventSummary event3 = new EventSummary();
+
+        event1.setId("srclll");
+        event1.setDuration(6);
+        event1.setType("APPLICATION_LOG");
+        event1.setHost("4545");
+        event1.setAlert(true);
+
+        event2.setId("srcmmm");
+        event1.setDuration(2);
+        event1.setType("APPLICATION_LOG");
+        event1.setHost("6677");
+        event1.setAlert(false);
+
+        event3.setId("srcppp");
+        event1.setDuration(8);
+        event1.setType("APPLICATION_LOG");
+        event1.setHost("8899");
+        event1.setAlert(true);
+
+        return Arrays.asList(event1, event2, event3);
 
     }
 }
