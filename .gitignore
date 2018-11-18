@@ -1,0 +1,14 @@
+### Gradle dir ###
+.gradle/
+
+### IntelliJ files ###
+.idea/
+
+### Data files ###
+eventsdb.lck
+eventsdb.log
+eventsdb.properties
+eventsdb.script
+
+### Binary files ###
+out/
