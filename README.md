@@ -9,15 +9,15 @@ Java application to read a log file containing records of events, process each o
 register it, with additional information, into a database.
 
 ## How to compile and run
-1. Inside the project root directory (events-manager), run:
-   $ gradlew clean
+1. Inside the project root directory (events-manager), run:<br />
+   $ gradlew clean<br />
    $ gradlew build
 
 2. A jar file will be generated on ./build/libs
 
 3. To run, execute:
-   $ java -jar build\\libs\\events-manager-1.0-SNAPSHOT.jar <log-event-file>
-   i.e: log-event-file can be: ".\\src\\main\\resources\\events-log"
+   $ java -jar build/libs/events-manager-1.0-SNAPSHOT.jar <log-event-file> <br />
+   i.e: log-event-file can be: "./src/main/resources/events-log"
 
 ## Versions
 * 1.0-SNAPSHOT Release containing:
