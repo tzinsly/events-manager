@@ -19,7 +19,7 @@ register it, with additional information, into a database.
    $ java -jar build\\libs\\events-manager-1.0-SNAPSHOT.jar <log-event-file>
    i.e: log-event-file can be: ".\\src\\main\\resources\\events-log"
 
-##Versions
+## Versions
 * 1.0-SNAPSHOT Release containing:
   ### Features:
   * Read and parse of input text file 
