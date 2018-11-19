@@ -12,3 +12,4 @@ eventsdb.script
 
 ### Binary files ###
 out/
+build/
